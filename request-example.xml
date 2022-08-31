@@ -1,0 +1,29 @@
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap-env:Header>
+        <tokenPassport>
+            <account>{{ACCOUNT}}</account>
+            <consumerKey>{{CONSUMER_KEY}}</consumerKey>
+            <token>{{TOKEN_ID}}</token>
+            <nonce>{{nonce}}</nonce>
+            <timestamp>{{timestamp}}</timestamp>
+            <signature algorithm="HMAC-SHA256">{{signature}}</signature>
+        </tokenPassport>
+        <preferences>
+            <runServerSuiteScriptAndTriggerWorkflows>
+                false
+            </runServerSuiteScriptAndTriggerWorkflows>
+        </preferences>
+        <searchPreferences>
+            <pageSize>50</pageSize>
+            <bodyFieldsOnly>false</bodyFieldsOnly>
+        </searchPreferences>
+    </soap-env:Header>
+    <soap-env:Body>
+        <ns0:search xmlns:ns0="urn:messages_2022_1.platform.webservices.netsuite.com">
+            <ns0:searchRecord xmlns:ns2="urn:relationships_2022_1.lists.webservices.netsuite.com"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:VendorSearch">
+                <ns2:basic/>
+            </ns0:searchRecord>
+        </ns0:search>
+    </soap-env:Body>
+</soap-env:Envelope>
