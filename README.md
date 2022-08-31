@@ -5,6 +5,8 @@ Here you will find a proof of concept for connecting to a SOAP API using typescr
 To see the PoC working, run the following command, passing in the correct values for the environment variables (these can be found in the Postman collection).
 
 ```
+$ yarn install
+
 $ NETSUITE_SERVICE_URL=service_url \
     NETSUITE_ACCOUNT=account \
     NETSUITE_CONSUMER_KEY=consumer_key \
