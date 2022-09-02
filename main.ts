@@ -20,6 +20,9 @@ async function main(args: Set<string>): Promise<void> {
         case "vendors":
             result = await service.getVendors();
             break;
+        case "accounts":
+            result = await service.getAccounts();
+            break;
         default:
             result = {error: `Unsupported Feature: ${feature}`}
             break;

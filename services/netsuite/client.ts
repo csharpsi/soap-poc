@@ -26,8 +26,9 @@ export async function buildNetsuiteClient(describe?: boolean): Promise<NetsuiteC
     }
 
     client.setSecurity(buildTokenPassportSecurity());
-    
+
     function addSoapHeader(header: {}): void {
+        client.clearSoapHeaders();
         client.addSoapHeader(() => ({...header}));
     }
 
