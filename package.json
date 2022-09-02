@@ -11,7 +11,8 @@
     "describe": "npx ts-node main.ts describe",
     "vendors": "npx ts-node main.ts vendors",
     "accounts": "npx ts-node main.ts accounts",
-    "employees": "npx ts-node main.ts employees"
+    "employees": "npx ts-node main.ts employees",
+    "parallel": "npx ts-node main.ts"
   },
   "devDependencies": {
     "@types/node": "^18.7.14",

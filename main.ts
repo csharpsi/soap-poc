@@ -18,13 +18,20 @@ async function main(args: Set<string>): Promise<void> {
 
     switch(feature) {
         case "vendors":
-            result = await service.getVendors();
+            result = await service.getVendors({count: 10});
             break;
         case "accounts":
-            result = await service.getAccounts();
+            result = await service.getAccounts({count: 10});
+            break;
+        case "employees":
+            result = await service.getEmployees({count: 10});
             break;
         default:
-            result = {error: `Unsupported Feature: ${feature}`}
+            result = await Promise.all([
+                service.getVendors({count: 10}),
+                service.getAccounts({count: 20}),
+                service.getEmployees({count: 30})
+            ]);
             break;
     }
 

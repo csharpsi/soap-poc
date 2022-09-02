@@ -28,16 +28,15 @@ $ yarn describe
 # call the search vendors endpoint
 $ yarn vendors  
 
-# TODO call the search accounts endpoint
+# call the search accounts endpoint
 $ yarn accounts
 
-# TODO call the search employees endpoint
+# call the search employees endpoint
 $ yarn employees
-```
 
-## TODO
-* Add call to "accounts"
-* Add call to "employees"
+# call vendors, accounts and employees endpoints in parallel, using different soap headers for each request
+$ yarn parallel
+```
 
 ## Proof of concept detail
 
@@ -66,6 +65,12 @@ const client = await createClientAsync(wsdl, {
   useEmptyTag: true
 });
 ```
+
+ `node-soap` uses the WSDL file to auto discover methods which it then attaches to the `client` object. It's clever enough to create both callback and Promise versions of each method, with the Promise methods named with an "Async" suffix. The return type of the async methods is roughly `Promise<[data: Object, rawResponse: string, metadata: Object, rawRequest: string]>`
+
+**For example:** An API method defined in the WSDL as "search" will result in there being a `client.search(args, callback)` _and_ a `await client.searchAsync(args)` method.
+
+Netsuite defines asynchronous methods that work differently from traditional `async/await` methods, however, there are also async versions of these methods, resulting in method names such as `asyncAddListAsync()`.
 
 `client.describe()` can be used to display a list of available methods. Below is an example output from the describe function
 
@@ -107,12 +112,6 @@ The above will result in the following XML being added to the `<soap-env:Header>
 ```
 
 ### Making the request
-
-With the client configured, we can start sending requests. `node-soap` works by dynamically creating methods that it finds in the WSDL definition and attaching them to the `client` object we created earlier. It's clever enough to create both sync and async version of the methods, with the async methods named with an "Async" suffix. The return type of the async methods is roughly `Promise<[data: Object, rawResponse: string, metadata: Object, rawRequest: string]>`
-
-**For example:** An API method defined in the WSDL as "search" will result in there being a `client.search(args, callback)` _and_ a `client.searchAsync(args)` method.
-
-Netsuite defines asynchronous methods that work differently from traditional `async/await` methods, however, there are also async versions of these methods, resulting in method names such as `asyncAddListAsync()`.
 
 An example of a search request:
 ```ts
