@@ -3,13 +3,19 @@ export type NetsuiteVendor = {
     name: string;
     address?: string;
 }
-
 export function createNetsuiteVendor(
     id: string,
     name: string,
     address?: string
 ): NetsuiteVendor {
     return {id, name, address};
+}
+
+export type NetsuiteAccount = {
+
+}
+export function createNetsuiteAccount(): NetsuiteAccount {
+    return {}
 }
 
 export type SearchResponse<T> = {
@@ -31,14 +37,3 @@ export type SearchResponse<T> = {
     }
 }
 
-export type Vendor = {
-    attributes: {
-        internalId: string;
-    };
-    entityId: string;
-    isPerson: boolean;
-    isInactive: boolean;
-    companyName: string | undefined;
-    defaultAddress: string | undefined;
-    legalName: string | undefined;
-}

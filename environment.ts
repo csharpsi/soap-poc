@@ -1,4 +1,8 @@
-export type Environment = {
+import { config } from "dotenv";
+
+config();
+
+type Environment = {
     webServiceUrl: string;
     account: string;
     consumerKey: string;
